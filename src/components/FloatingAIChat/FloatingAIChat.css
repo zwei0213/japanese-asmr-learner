@@ -1,0 +1,166 @@
+/* Floating AI Chat Styles */
+.floating-ai-chat {
+    position: fixed;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    background: rgba(20, 20, 35, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(20px);
+    overflow: hidden;
+    transition: box-shadow 0.2s ease;
+}
+
+.floating-ai-chat.dragging {
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6);
+    opacity: 0.95;
+}
+
+.floating-ai-chat.minimized {
+    height: auto !important;
+}
+
+/* Header */
+.floating-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: move;
+    user-select: none;
+}
+
+.header-drag-area {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.drag-icon {
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.header-title {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--color-text-primary);
+}
+
+.header-controls {
+    display: flex;
+    gap: 4px;
+}
+
+.control-btn {
+    width: 24px;
+    height: 24px;
+    border: none;
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.control-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--color-text-primary);
+}
+
+.control-btn.close:hover {
+    background: rgba(255, 107, 107, 0.3);
+    color: var(--color-accent-red);
+}
+
+/* Content */
+.floating-content {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.floating-content .ai-chat {
+    height: 100%;
+    border-radius: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+/* Resize Handle */
+.resize-handle {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 16px;
+    height: 16px;
+    cursor: se-resize;
+    background: linear-gradient(135deg,
+            transparent 50%,
+            rgba(255, 255, 255, 0.1) 50%,
+            rgba(255, 255, 255, 0.1) 60%,
+            transparent 60%,
+            transparent 70%,
+            rgba(255, 255, 255, 0.1) 70%,
+            rgba(255, 255, 255, 0.1) 80%,
+            transparent 80%);
+}
+
+.resize-handle:hover {
+    background: linear-gradient(135deg,
+            transparent 50%,
+            rgba(255, 255, 255, 0.2) 50%,
+            rgba(255, 255, 255, 0.2) 60%,
+            transparent 60%,
+            transparent 70%,
+            rgba(255, 255, 255, 0.2) 70%,
+            rgba(255, 255, 255, 0.2) 80%,
+            transparent 80%);
+}
+
+/* AI Toggle Button */
+.ai-toggle-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 56px;
+    height: 56px;
+    border: none;
+    border-radius: 50%;
+    background: var(--gradient-accent);
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(255, 107, 157, 0.4);
+    transition: all var(--transition-normal);
+    z-index: 998;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ai-toggle-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 24px rgba(255, 107, 157, 0.5);
+}
+
+.ai-toggle-btn.active {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--color-text-secondary);
+    box-shadow: none;
+}
+
+.ai-toggle-btn.active:hover {
+    background: rgba(255, 255, 255, 0.15);
+}

@@ -1,0 +1,187 @@
+/* App-specific Styles */
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-container {
+  flex: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-xl);
+  width: 100%;
+}
+
+/* Lesson Page */
+.lesson-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.lesson-header {
+  padding: var(--spacing-lg);
+  text-align: center;
+}
+
+.lesson-header h2 {
+  margin: 0;
+  font-size: var(--font-size-2xl);
+}
+
+.lesson-header p {
+  margin: var(--spacing-xs) 0 var(--spacing-md);
+  color: var(--color-text-secondary);
+}
+
+.lesson-controls {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-lg);
+  flex-wrap: wrap;
+}
+
+.toggle-label {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+
+.toggle-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--color-accent-pink);
+}
+
+/* Stats Page */
+.stats-page {
+  padding: var(--spacing-xl);
+}
+
+.stats-page h2 {
+  margin: 0 0 var(--spacing-xl);
+  text-align: center;
+}
+
+.stats-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.stat-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--spacing-lg);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+.detail-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-sm);
+}
+
+.detail-value {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Achievements Page */
+.achievements-page {
+  padding: var(--spacing-xl);
+  text-align: center;
+}
+
+.achievements-page h2 {
+  margin: 0 0 var(--spacing-md);
+}
+
+.coming-soon {
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-xl);
+}
+
+.achievement-preview {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--spacing-md);
+}
+
+.achievement-badge {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-md);
+}
+
+.achievement-badge.locked {
+  opacity: 0.5;
+  filter: grayscale(50%);
+}
+
+.achievement-badge.unlocked {
+  background: rgba(255, 107, 157, 0.1);
+  border-color: var(--color-accent-pink);
+  animation: glow 2s ease infinite;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .app-container {
+    padding: var(--spacing-md);
+  }
+}
+
+/* AI Toggle Button */
+.ai-toggle-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  border: none;
+  border-radius: 50%;
+  background: var(--gradient-accent);
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(255, 107, 157, 0.4);
+  transition: all var(--transition-normal);
+  z-index: 998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ai-toggle-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 24px rgba(255, 107, 157, 0.5);
+}
+
+.ai-toggle-btn.active {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-text-secondary);
+  box-shadow: none;
+}
+
+.ai-toggle-btn.active:hover {
+  background: rgba(255, 255, 255, 0.15);
+}

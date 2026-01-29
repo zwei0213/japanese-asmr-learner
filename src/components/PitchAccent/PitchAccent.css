@@ -1,0 +1,73 @@
+/* Pitch Accent Styles */
+.pitch-accent {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.pitch-svg {
+    height: 40px;
+}
+
+.pitch-line {
+    stroke: var(--color-accent-blue);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.pitch-dot {
+    transition: all var(--transition-fast);
+}
+
+.pitch-dot.high {
+    fill: var(--color-accent-pink);
+}
+
+.pitch-dot.low {
+    fill: var(--color-accent-blue);
+}
+
+.pitch-moras {
+    display: flex;
+    gap: 2px;
+}
+
+.mora {
+    width: 28px;
+    text-align: center;
+    font-size: var(--font-size-sm);
+    transition: color var(--transition-fast);
+}
+
+.mora.high {
+    color: var(--color-accent-pink);
+}
+
+.mora.low {
+    color: var(--color-accent-blue);
+}
+
+/* Sizes */
+.pitch-small .pitch-svg {
+    height: 24px;
+}
+
+.pitch-small .mora {
+    width: 18px;
+    font-size: var(--font-size-xs);
+}
+
+.pitch-large .pitch-svg {
+    height: 56px;
+}
+
+.pitch-large .mora {
+    width: 36px;
+    font-size: var(--font-size-lg);
+}
+
+.pitch-reading {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+}
