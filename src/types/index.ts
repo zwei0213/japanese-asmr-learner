@@ -102,7 +102,7 @@ export interface GrammarPoint {
   id: string;
   pattern: string;        // 语法结构
   meaning: string;        // 中文解释
-  level: 'N5' | 'N4' | 'N3' | 'N2' | 'N1';
+  level: string;          // 级别 (不再限制为N5/N4)
   examples: {
     japanese: string;
     reading: string;

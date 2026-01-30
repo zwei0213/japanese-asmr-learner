@@ -16,7 +16,6 @@ export const GrammarLibrary: React.FC<GrammarLibraryProps> = ({
     onUpdateGrammar,
     onAddGrammar,
 }) => {
-    const [selectedLevel, setSelectedLevel] = useState<string>('all');
     const [expandedId, setExpandedId] = useState<string | null>(null);
     const [searchTerm, setSearchTerm] = useState('');
     const [editingItem, setEditingItem] = useState<GrammarPoint | null>(null);
@@ -61,18 +60,19 @@ export const GrammarLibrary: React.FC<GrammarLibraryProps> = ({
     };
 
     const filteredPatterns = grammarPoints.filter(p => {
-        const matchesLevel = selectedLevel === 'all' || p.level === selectedLevel;
+        // Simple filter: showing everything by default for now, or just search
+        // User asked to cancel grading, so we might just show all unless searched
         const matchesSearch =
             p.pattern.includes(searchTerm) ||
             p.meaning.includes(searchTerm);
-        return matchesLevel && matchesSearch;
+        return matchesSearch;
     });
 
     return (
         <div className="grammar-library">
             <div className="grammar-header glass-card">
                 <h2>📖 语法卡片库</h2>
-                <p>N5/N4基础语法点整理</p>
+                <p>日语语法点整理</p>
             </div>
 
             <div className="grammar-controls glass-card">
@@ -83,17 +83,6 @@ export const GrammarLibrary: React.FC<GrammarLibraryProps> = ({
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
-                <div className="level-filter">
-                    {['all', 'N5', 'N4'].map(level => (
-                        <button
-                            key={level}
-                            className={`level-btn ${selectedLevel === level ? 'active' : ''}`}
-                            onClick={() => setSelectedLevel(level)}
-                        >
-                            {level === 'all' ? '全部' : level}
-                        </button>
-                    ))}
-                </div>
                 {onAddGrammar && (
                     <button className="add-btn btn-primary" onClick={handleAddClick} style={{ marginTop: '1rem', width: '100%', justifyContent: 'center' }}>
                         + 添加语法
@@ -113,10 +102,13 @@ export const GrammarLibrary: React.FC<GrammarLibraryProps> = ({
                         >
                             <div className="grammar-main">
                                 <span className="grammar-pattern">{pattern.pattern}</span>
-                                <span className={`level-badge level-${pattern.level.toLowerCase()}`}>
-                                    {pattern.level}
-                                </span>
+                                {pattern.level && pattern.level !== 'N5' && pattern.level !== 'Auto' && (
+                                    <span className={`level-badge level-${pattern.level.toLowerCase()}`}>
+                                        {pattern.level}
+                                    </span>
+                                )}
                             </div>
+                            {/* ... remaining structure ... */}
                             <span className="grammar-meaning">{pattern.meaning}</span>
                             <span className="expand-icon">
                                 {expandedId === pattern.id ? '▼' : '▶'}
@@ -197,15 +189,14 @@ export const GrammarLibrary: React.FC<GrammarLibraryProps> = ({
                         </div>
 
                         <div className="edit-field">
-                            <label>级别 (N5/N4)</label>
-                            <select
+                            <label>级别 (可选)</label>
+                            <input
+                                type="text"
                                 className="input"
-                                value={editForm.level || 'N5'}
-                                onChange={e => setEditForm(prev => ({ ...prev, level: e.target.value as any }))}
-                            >
-                                <option value="N5">N5</option>
-                                <option value="N4">N4</option>
-                            </select>
+                                value={editForm.level || ''}
+                                placeholder="如: N3, 常用, 敬语等"
+                                onChange={e => setEditForm(prev => ({ ...prev, level: e.target.value }))}
+                            />
                         </div>
 
                         <div className="edit-field">

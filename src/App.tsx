@@ -15,10 +15,8 @@ import { SentencePanel } from './components/SentencePanel/SentencePanel';
 import { WordExplainer } from './components/WordExplainer/WordExplainer';
 import { VocabularyBook } from './components/VocabularyBook/VocabularyBook';
 import { FlashcardReview } from './components/FlashcardReview/FlashcardReview';
-import { KanaLearning } from './components/KanaLearning/KanaLearning';
 import { GrammarLibrary } from './components/GrammarLibrary/GrammarLibrary';
 import { AudioImport } from './components/AudioImport/AudioImport';
-import { AIChat } from './components/AIChat/AIChat';
 import { FloatingAIChat } from './components/FloatingAIChat/FloatingAIChat';
 
 import './index.css';
@@ -62,7 +60,6 @@ function App() {
     hasWord,
     updateReview,
     dueForReview,
-    masteredWords,
     stats: vocabStats,
   } = useVocabulary();
 
@@ -84,8 +81,6 @@ function App() {
     recordSentenceListened,
     recordWordLearned,
     recordStudyTime,
-    updateGoals,
-    resetDailyProgress,
   } = useLearningStats();
 
   // Handlers
@@ -228,6 +223,8 @@ function App() {
               }}
               showReading={showReading}
               showTranslation={showTranslation}
+              onAddToVocabulary={addWord}
+              onAddToGrammar={addGrammar}
             />
 
             {/* Floating AI Chat Toggle Button */}
@@ -244,9 +241,6 @@ function App() {
               isOpen={showAIChat}
               onClose={() => setShowAIChat(false)}
               selectedText={aiSelectedText}
-              onAddToVocabulary={addWord}
-              onSaveToNote={addNote}
-              onAddToGrammar={addGrammar}
             />
           </div>
         );
@@ -271,9 +265,6 @@ function App() {
             onClose={() => setCurrentPage('vocabulary')}
           />
         );
-
-      case 'kana':
-        return <KanaLearning />;
 
       case 'grammar':
         return (
@@ -334,14 +325,7 @@ function App() {
           </div>
         );
 
-      case 'ai':
-        return (
-          <AIChat
-            onAddToVocabulary={addWord}
-            onSaveToNote={addNote}
-            onAddToGrammar={addGrammar}
-          />
-        );
+
 
       default:
         return null;

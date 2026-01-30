@@ -12,10 +12,10 @@ interface NavigationProps {
 const navItems: { page: PageType; label: string; icon: string }[] = [
     { page: 'home', label: '首页', icon: '🏠' },
     { page: 'lesson', label: '听力', icon: '🎧' },
-    { page: 'ai', label: 'AI助手', icon: '🤖' },
+    // AI页面已移除，改为悬浮窗
     { page: 'vocabulary', label: '生词本', icon: '📚' },
     { page: 'flashcards', label: '闪卡', icon: '🎴' },
-    { page: 'kana', label: '假名', icon: '🔤' },
+    // 假名页面已移除
     { page: 'grammar', label: '语法', icon: '📖' },
     { page: 'stats', label: '统计', icon: '📊' },
     { page: 'achievements', label: '成就', icon: '🏆' },

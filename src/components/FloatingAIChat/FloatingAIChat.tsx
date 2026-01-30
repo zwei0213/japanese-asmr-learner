@@ -7,18 +7,12 @@ interface FloatingAIChatProps {
     isOpen: boolean;
     onClose: () => void;
     selectedText?: string;
-    onAddToVocabulary?: (word: any) => void;
-    onSaveToNote?: (note: { title: string; content: string; type: 'general' | 'word' | 'grammar' | 'sentence' }) => void;
-    onAddToGrammar?: (grammar: any) => void;
 }
 
 export const FloatingAIChat: React.FC<FloatingAIChatProps> = ({
     isOpen,
     onClose,
     selectedText,
-    onAddToVocabulary,
-    onSaveToNote,
-    onAddToGrammar,
 }) => {
     const [position, setPosition] = useState({ x: window.innerWidth - 420, y: 80 });
     const [size, setSize] = useState({ width: 380, height: 500 });
@@ -122,9 +116,7 @@ export const FloatingAIChat: React.FC<FloatingAIChatProps> = ({
                 <div className="floating-content">
                     <AIChat
                         selectedText={selectedText}
-                        onAddToVocabulary={onAddToVocabulary}
-                        onSaveToNote={onSaveToNote}
-                        onAddToGrammar={onAddToGrammar}
+                    // Action buttons removed as per user request
                     />
                 </div>
             )}
